@@ -7,6 +7,8 @@ public class CodeBlock : MonoBehaviour
     // This Class is a parent class of every code parts
     // i.e. if, num, elemental, loop, class, ...
     // Start is called before the first frame update
+    public double multiple = 1;
+    public double source;
     void Start()
     {
         
@@ -15,46 +17,60 @@ public class CodeBlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        int damage = (int) (source * multiple);
     }
 
-    void Action()
+    int Action()
     {
-
+        return (int) multiple;
     }
 }
 
 public class IfBlock : CodeBlock
 {
-    void Action(){
-
+    public bool condition;
+    int Action()
+    {
+        if(condition)
+            multiple *= 1;
+        else
+            multiple *= 0;
+        return (int) multiple;
     }
 }
 
 public class NumBlock : CodeBlock
 {
-    void Action(){
-        
+    int Action()
+    {
+        return (int) multiple;
     }
 }
 
 public class ElementalBlock : CodeBlock
 {
-    void Action(){
-        
+    public Elemental elemental;
+    public enum Elemental{
+        Fire, Water, Wind, Earth, Wood, Electric, Light, Darkness, Evil, Saint,
+    }
+    int Action()
+    {
+        return (int) multiple;
     }
 }
 
 public class LoopBlock : CodeBlock
 {
-    void Action(){
-        
+    int Action()
+    {
+        return (int) multiple;
     }
 }
 
 public class ClassBlock : CodeBlock
 {
-    void Action(){
-        
+    int Action()
+    {
+        return (int) multiple;
     }
 }
