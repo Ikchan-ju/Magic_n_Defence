@@ -7,6 +7,7 @@ public class CodeBlock : MonoBehaviour
     // This Class is a parent class of every code parts
     // i.e. if, num, elemental, loop, class, ...
     // Start is called before the first frame update
+    public string name;
     public double multiple = 1;
     public double source;
     void Start()
@@ -28,10 +29,10 @@ public class CodeBlock : MonoBehaviour
 
 public class IfBlock : CodeBlock
 {
-    public bool condition;
+    public Condition condition;
     int Action()
     {
-        if(condition)
+        if(condition.isTrue)
             multiple *= 1;
         else
             multiple *= 0;
@@ -39,6 +40,39 @@ public class IfBlock : CodeBlock
     }
 }
 
+public class Condition<T>
+{
+    public bool isTrue = false;
+
+    public enum Description{
+        larger, smaller, equal, strong, weak, 
+    }
+
+    public Description description;
+
+    public void Estimate(T input, T input2)
+    {
+        switch(description){
+            case Description.larger:
+                break;
+
+            case Description.smaller:
+                break;
+
+            case Description.equal:
+                break;
+
+            case Description.strong:
+                break;
+
+            case Description.weak:
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
 public class NumBlock : CodeBlock
 {
     int Action()
