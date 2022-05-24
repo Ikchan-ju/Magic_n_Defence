@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System.Linq;
 
 public class CodeBlock : MonoBehaviour
 {
@@ -40,7 +42,7 @@ public class IfBlock : CodeBlock
     }
 }
 
-public class Condition<T> where T : NumBlock, ElementalBlock
+public class Condition
 {
     public bool isTrue = false;
 
@@ -51,18 +53,18 @@ public class Condition<T> where T : NumBlock, ElementalBlock
 
     public Description description;
 
-    public void Estimate(T Tinput, T Treference)
+    public void Estimate(NumBlock input, NumBlock reference)
     {
-        // if(T is NumBlock)
-        //     isTrue = Tinput.Comparison(Treference);
-        // else if(T is ElementalBlock)
-        //     isTrue = Tinput.Comparison(Treference);
-        isTrue = Tinput.Comparison(Treference);
+        isTrue = input.Comparison(reference);
+    }
+    public void Estimate(ElementalBlock input, ElementalBlock reference)
+    {
+        isTrue = input.Comparison(reference);
     }
 }
 public class NumBlock
 {
-    T number;
+    float number;
     public Condition.Description description;
 
     public bool Comparison(NumBlock reference){
@@ -70,15 +72,17 @@ public class NumBlock
             case Condition.Description.larger:
                 if(number >= reference.number)
                     return true;
+                break;
             case Condition.Description.smaller:
                 if(number <= reference.number)
                     return true;
+                break;
             case Condition.Description.equal:
                 if(number == reference.number)
                     return true;
-            default:
-                    return false;
+                break;
         }
+        return false;
     }
 }
 
@@ -88,27 +92,31 @@ public class ElementalBlock
         advantageTable = new Dictionary<Elemental, Dictionary<Elemental, bool>>();
         Dictionary<Elemental, bool> tempDict = new Dictionary<Elemental, bool>();
         tempDict.Add(Elemental.Fire, false);
-        var Dict = File.ReadLines("AdavantageTable.csv").Select(line => line.Split(',')).ToDictionary(line => line[0], line => line.Select(str ? 0 : false));
+        var file = File.ReadLines("AdavantageTable.csv");
+        // var label = file.
+        var Dict = file.Select(line => line.Split(',')).ToDictionary(line => line[0], line => line.Select(str => str =="0" ? false : true));
     }
+    public Condition.Description description = Condition.Description.strong;
     public Elemental elemental;
     public enum Elemental{
         Fire, Water, Wind, Earth, Wood, Electric, Light, Darkness, Evil, Saint,
     }
     public Dictionary<Elemental, Dictionary<Elemental, bool>> advantageTable;
     public bool IsStrong(Elemental input, Elemental reference){
-        
+        return false;
     }
     public bool Comparison(ElementalBlock reference){
         switch(description){
             case Condition.Description.strong:
                 if(elemental >= reference.elemental)
                     return true;
+                break;
             case Condition.Description.weak:
                 if(elemental <= reference.elemental)
                     return true;
-            default:
-                    return false;
+                break;
         }
+        return false;
     }
 }
 
