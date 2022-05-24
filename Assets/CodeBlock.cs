@@ -40,56 +40,75 @@ public class IfBlock : CodeBlock
     }
 }
 
-public class Condition<T>
+public class Condition<T> where T : NumBlock, ElementalBlock
 {
     public bool isTrue = false;
 
     public enum Description{
-        larger, smaller, equal, strong, weak, 
+        larger, smaller, equal, // (Where T:NumBlock) Each larger & smaller cases contain equal case. Equal case is a special one which can amplitude input source.
+         strong, weak, // (where T: ElementalBlock) These cases are judged by the scenario that Tinput attacks Treference.
     }
 
     public Description description;
 
-    public void Estimate(T input, T input2)
+    public void Estimate(T Tinput, T Treference)
     {
+        // if(T is NumBlock)
+        //     isTrue = Tinput.Comparison(Treference);
+        // else if(T is ElementalBlock)
+        //     isTrue = Tinput.Comparison(Treference);
+        isTrue = Tinput.Comparison(Treference);
+    }
+}
+public class NumBlock
+{
+    T number;
+    public Condition.Description description;
+
+    public bool Comparison(NumBlock reference){
         switch(description){
-            case Description.larger:
-                break;
-
-            case Description.smaller:
-                break;
-
-            case Description.equal:
-                break;
-
-            case Description.strong:
-                break;
-
-            case Description.weak:
-                break;
-                
+            case Condition.Description.larger:
+                if(number >= reference.number)
+                    return true;
+            case Condition.Description.smaller:
+                if(number <= reference.number)
+                    return true;
+            case Condition.Description.equal:
+                if(number == reference.number)
+                    return true;
             default:
-                break;
+                    return false;
         }
     }
 }
-public class NumBlock : CodeBlock
-{
-    int Action()
-    {
-        return (int) multiple;
-    }
-}
 
-public class ElementalBlock : CodeBlock
+public class ElementalBlock
 {
+    ElementalBlock(){
+        advantageTable = new Dictionary<Elemental, Dictionary<Elemental, bool>>();
+        Dictionary<Elemental, bool> tempDict = new Dictionary<Elemental, bool>();
+        tempDict.Add(Elemental.Fire, false);
+        var Dict = File.ReadLines("AdavantageTable.csv").Select(line => line.Split(',')).ToDictionary(line => line[0], line => line.Select(str ? 0 : false));
+    }
     public Elemental elemental;
     public enum Elemental{
         Fire, Water, Wind, Earth, Wood, Electric, Light, Darkness, Evil, Saint,
     }
-    int Action()
-    {
-        return (int) multiple;
+    public Dictionary<Elemental, Dictionary<Elemental, bool>> advantageTable;
+    public bool IsStrong(Elemental input, Elemental reference){
+        
+    }
+    public bool Comparison(ElementalBlock reference){
+        switch(description){
+            case Condition.Description.strong:
+                if(elemental >= reference.elemental)
+                    return true;
+            case Condition.Description.weak:
+                if(elemental <= reference.elemental)
+                    return true;
+            default:
+                    return false;
+        }
     }
 }
 
