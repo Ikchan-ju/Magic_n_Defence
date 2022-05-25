@@ -89,12 +89,15 @@ public class NumBlock
 public class ElementalBlock
 {
     ElementalBlock(){
-        advantageTable = new Dictionary<Elemental, Dictionary<Elemental, bool>>();
-        Dictionary<Elemental, bool> tempDict = new Dictionary<Elemental, bool>();
-        tempDict.Add(Elemental.Fire, false);
-        var file = File.ReadLines("AdavantageTable.csv");
-        // var label = file.
-        var Dict = file.Select(line => line.Split(',')).ToDictionary(line => line[0], line => line.Select(str => str =="0" ? false : true));
+        // advantageTable = new Dictionary<Elemental, Dictionary<Elemental, bool>>();
+        // Dictionary<Elemental, bool> tempDict = new Dictionary<Elemental, bool>();
+        // tempDict.Add(Elemental.Fire, false);
+        // var file = File.ReadLines("AdavantageTable.csv");
+        // file.GetEnumerator().MoveNext();
+        // var label = file.GetEnumerator.Current.Split(',');
+        // var Dict = file.Select(line => line.Split(',')).ToDictionary(line => line[0], line => line.Select(str => str =="0" ? false : true));
+        var label = File.ReadLines("AdavantageTable.csv").Where(line => line.Split(',')[0] == "AdvantageTable");
+        var dict = File.ReadLines("AdavantageTable.csv").Where(line => line.Split(',')[0] != "AdvantageTable").Select(line, i => line.Split(',').ToDictionary(key => label[i], str => str));
     }
     public Condition.Description description = Condition.Description.strong;
     public Elemental elemental;
