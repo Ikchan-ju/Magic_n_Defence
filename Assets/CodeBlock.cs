@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Linq;
+using System;
 
 public class CodeBlock : MonoBehaviour
 {
-    // This Class is a parent class of every code parts
-    // i.e. if, num, elemental, loop, class, ...
     // Start is called before the first frame update
     public string name;
-    public double multiple = 1;
-    public double source;
+    public float multiple = 1;
+    public float source;
     void Start()
     {
         
@@ -20,12 +19,7 @@ public class CodeBlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int damage = (int) (source * multiple);
-    }
-
-    int Action()
-    {
-        return (int) multiple;
+        
     }
 }
 
@@ -89,15 +83,16 @@ public class NumBlock
 public class ElementalBlock
 {
     ElementalBlock(){
-        // advantageTable = new Dictionary<Elemental, Dictionary<Elemental, bool>>();
-        // Dictionary<Elemental, bool> tempDict = new Dictionary<Elemental, bool>();
-        // tempDict.Add(Elemental.Fire, false);
-        // var file = File.ReadLines("AdavantageTable.csv");
-        // file.GetEnumerator().MoveNext();
-        // var label = file.GetEnumerator.Current.Split(',');
-        // var Dict = file.Select(line => line.Split(',')).ToDictionary(line => line[0], line => line.Select(str => str =="0" ? false : true));
+        advantageTable = new Dictionary<Elemental, Dictionary<Elemental, bool>>();
         var label = File.ReadLines("AdavantageTable.csv").Where(line => line.Split(',')[0] == "AdvantageTable");
-        var dict = File.ReadLines("AdavantageTable.csv").Where(line => line.Split(',')[0] != "AdvantageTable").Select(line, i => line.Split(',').ToDictionary(key => label[i], str => str));
+        var dict = File.ReadLines("AdavantageTable.csv").Where(line => line.Split(',')[0] != "AdvantageTable").Select((line, i) => line.Split(',').ToDictionary(key => label.ElementAt(i), str => str));
+        foreach(var dic in dict){
+            try{
+                advantageTable[(Elemental)Enum.Parse(typeof(Elemental), dic["AdvantageTable"])] = dic.Where(pair => pair.Key != "AdvantageTable").ToDictionary(pair => (Elemental)Enum.Parse(typeof(Elemental), pair.Key), pair => pair.Value == "1");
+            }catch(ArgumentException){
+                Console.WriteLine("there is an error at ElementalBlock class");
+            }
+        }
     }
     public Condition.Description description = Condition.Description.strong;
     public Elemental elemental;
@@ -111,11 +106,11 @@ public class ElementalBlock
     public bool Comparison(ElementalBlock reference){
         switch(description){
             case Condition.Description.strong:
-                if(elemental >= reference.elemental)
+                if(advantageTable[elemental][reference.elemental])
                     return true;
                 break;
             case Condition.Description.weak:
-                if(elemental <= reference.elemental)
+                if(advantageTable[reference.elemental][elemental])
                     return true;
                 break;
         }
