@@ -11,6 +11,9 @@ public class CodeBlock : MonoBehaviour
     public string name;
     public float multiple = 1;
     public float source;
+    public float input;
+    float input_backup;
+    public float output;
     void Start()
     {
         
@@ -19,7 +22,9 @@ public class CodeBlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(input != input_backup)
+            output = input * multiple;
+        input_backup = input;
     }
 }
 
@@ -120,9 +125,34 @@ public class ElementalBlock
 
 public class LoopBlock : CodeBlock
 {
+    public enum Type{
+        For, While,
+    }
+    public Type type;
+    public int cap;
+    public int count;
+    public bool condition;
     int Action()
     {
         return (int) multiple;
+    }
+    void Loop(){
+        switch(type){
+            case Type.For:
+                if(count < cap){
+                    count++;
+                    GoTo();
+                }
+                return;
+            case Type.While:
+                if(condition){
+                    GoTo();
+                }
+                return;
+        }
+    }
+    void GoTo(){
+
     }
 }
 
