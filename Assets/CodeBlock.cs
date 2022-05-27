@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System;
 
-public class CodeBlock : MonoBehaviour
+public class CodeBlock : MonoBehaviour, ICodeBlock
 {
     // Start is called before the first frame update
     public string name;
@@ -26,18 +26,24 @@ public class CodeBlock : MonoBehaviour
             output = input * multiple;
         input_backup = input;
     }
+    float GoForward()
+    {
+        
+    }
 }
-
+public interface ICodeBlock{
+    public float GoForward();
+}
 public class IfBlock : CodeBlock
 {
     public Condition condition;
-    int Action()
+    float GoForward()
     {
         if(condition.isTrue)
             multiple *= 1;
         else
             multiple *= 0;
-        return (int) multiple;
+        return multiple;
     }
 }
 
@@ -132,9 +138,9 @@ public class LoopBlock : CodeBlock
     public int cap;
     public int count;
     public bool condition;
-    int Action()
+    float GoForward()
     {
-        return (int) multiple;
+        return multiple;
     }
     void Loop(){
         switch(type){
@@ -158,8 +164,16 @@ public class LoopBlock : CodeBlock
 
 public class ClassBlock : CodeBlock
 {
-    int Action()
+    float GoForward()
     {
-        return (int) multiple;
+        return multiple;
+    }
+}
+
+public class ActionBlock : CodeBlock
+{
+    float GoForward()
+    {
+        return multiple;
     }
 }

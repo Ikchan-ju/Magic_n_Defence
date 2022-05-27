@@ -10,5 +10,14 @@ what to do:
 2. Make code block as a part of magic spell
 
 3. Make spell design system
+    structure of spell design system
+        Spells
+        ├── Loop
+        |   ├── For
+        |   └── While
+        ├── Condition
+        |   ├── Numeric
+        |   └── Elemental
+        └── Action
 
 4. TBD
