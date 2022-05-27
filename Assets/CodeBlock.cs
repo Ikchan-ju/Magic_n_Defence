@@ -26,13 +26,13 @@ public class CodeBlock : MonoBehaviour, ICodeBlock
             output = input * multiple;
         input_backup = input;
     }
-    float GoForward()
+    public float GoForward()
     {
-        
+        return multiple;
     }
 }
 public interface ICodeBlock{
-    public float GoForward();
+    float GoForward();
 }
 public class IfBlock : CodeBlock
 {
@@ -58,39 +58,15 @@ public class Condition
 
     public Description description;
 
-    public void Estimate(NumBlock input, NumBlock reference)
-    {
-        isTrue = input.Comparison(reference);
-    }
+    // public void Estimate(NumBlock input, NumBlock reference)
+    // {
+    //     isTrue = input.Comparison(reference);
+    // }
     public void Estimate(ElementalBlock input, ElementalBlock reference)
     {
         isTrue = input.Comparison(reference);
     }
 }
-public class NumBlock
-{
-    float number;
-    public Condition.Description description;
-
-    public bool Comparison(NumBlock reference){
-        switch(description){
-            case Condition.Description.larger:
-                if(number >= reference.number)
-                    return true;
-                break;
-            case Condition.Description.smaller:
-                if(number <= reference.number)
-                    return true;
-                break;
-            case Condition.Description.equal:
-                if(number == reference.number)
-                    return true;
-                break;
-        }
-        return false;
-    }
-}
-
 public class ElementalBlock
 {
     ElementalBlock(){
