@@ -11,14 +11,14 @@ what to do:
 
 3. Make spell design system
     structure of spell design system
-    
+'''
      └──Spells
         ├── Loop
-            ├── For
-            └── While
+        |   ├── For
+        |   └── While
         ├── Condition
-            ├── Numeric
-            └── Elemental
+        |   ├── Numeric
+        |   └── Elemental
         └── Action
-
+'''
 4. TBD
