@@ -7,13 +7,14 @@ using System;
 
 public class CodeBlock : MonoBehaviour, ICodeBlock
 {
-    // Start is called before the first frame update
     public string name;
     public float multiple = 1;
     public float source;
     public float input;
     float input_backup;
     public float output;
+    
+    // Start is called before the first frame update
     void Start()
     {
         
@@ -30,7 +31,4 @@ public class CodeBlock : MonoBehaviour, ICodeBlock
     {
         return multiple;
     }
-}
-public interface ICodeBlock{
-    float GoForward();
 }

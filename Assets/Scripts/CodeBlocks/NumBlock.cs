@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class NumBlock : MonoBehaviour
+public class NumBlock : MonoBehaviour, IElementBlock
 {
     // Start is called before the first frame update
     private Text text;
@@ -13,13 +13,12 @@ public class NumBlock : MonoBehaviour
     {
         
         text = GetComponentInChildren<Text>();
-        text.text = "11";
+        text.text = ((int)number).ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // text = GetComponent<Text>();
         if((int)number != Int32.Parse(text.text)){
             text.text = ((int)number).ToString();
         }

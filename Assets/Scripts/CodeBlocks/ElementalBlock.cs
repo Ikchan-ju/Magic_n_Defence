@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-public class ElementalBlock : MonoBehaviour
+public class ElementalBlock : MonoBehaviour, IElementBlock
 {
     ElementalBlock(){
         advantageTable = new Dictionary<Elemental, Dictionary<Elemental, bool>>();
@@ -24,7 +24,7 @@ public class ElementalBlock : MonoBehaviour
     public enum Elemental{
         Fire, Water, Wind, Earth, Wood, Electric, Light, Darkness, Evil, Saint,
     }
-    public Dictionary<Elemental, Dictionary<Elemental, bool>> advantageTable;
+    public static Dictionary<Elemental, Dictionary<Elemental, bool>> advantageTable;
     public bool IsStrong(Elemental input, Elemental reference){
         return false;
     }
