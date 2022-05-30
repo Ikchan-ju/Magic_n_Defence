@@ -14,11 +14,11 @@ what to do:
     
      └──Spells
         ├── Loop
-        |   ├── For
-        |   └── While
+            ├── For
+            └── While
         ├── Condition
-        |   ├── Numeric
-        |   └── Elemental
+            ├── Numeric
+            └── Elemental
         └── Action
 
 4. TBD
