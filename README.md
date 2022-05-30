@@ -11,7 +11,7 @@ what to do:
 
 3. Make spell design system
     structure of spell design system
-        Spells
+     └──Spells
         ├── Loop
         |   ├── For
         |   └── While
