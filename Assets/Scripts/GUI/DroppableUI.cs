@@ -15,7 +15,9 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
     }
 
     public void OnPointerEnter(PointerEventData eventData){
-        image.color = Color.yellow;
+        Color y = Color.yellow;
+        y.a = 0.6f;
+        image.color = y;
     }
 
     public void OnDrop(PointerEventData eventData){
@@ -26,6 +28,12 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
     }
 
     public void OnPointerExit(PointerEventData eventData){
-        image.color = Color.white;
+        Canvas canvas = image.GetComponentInParent<Canvas>();
+        Color c = Color.white;
+        if(canvas.name == "InventoryCanvas")
+            c.a = 1.0f;
+        else
+            c.a = 0.0f;
+        image.color = c;
     }
 }
