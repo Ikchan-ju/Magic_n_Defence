@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 5831101552646718871}
   - component: {fileID: 13563600786769414}
   - component: {fileID: 214967843122022727}
-  - component: {fileID: 1433968772511528611}
+  - component: {fileID: -632926620676002514}
   m_Layer: 5
   m_Name: EqipmentSlot
   m_TagString: Untagged
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1433968772511528611
+--- !u!114 &-632926620676002514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,6 +220,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7656438572277439622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 204355db51e33934f9d6a7a70210e5f3, type: 3}
+  m_Script: {fileID: 11500000, guid: a70cf9774684baf4da0b0c8175de3f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

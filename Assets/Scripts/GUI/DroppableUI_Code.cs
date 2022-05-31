@@ -7,37 +7,34 @@ using UnityEngine.UI;
 public class DroppableUI_Code : DroppableUI
 {
     private static List<IElementBlock> elementBlocks = new List<IElementBlock>();
-    public void OnDrop(PointerEventData eventData){
+    public override void OnDrop(PointerEventData eventData){
+        print("Drop");
         if(eventData.pointerDrag == null)
             return;
-        if(getComponent<NumBlock>() != null)
+        if(GetComponent<NumBlock>() != null)
         {
             print("this is NumBlock");
-            eventData.pointerDrag.transform.SetParent(transform);
-            eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
-            elementBlocks.Add(getComponent<NumBlock>());
+            PutOn(eventData);
+            elementBlocks.Add(GetComponent<NumBlock>());
         }
-        if(getComponent<ElementalBlock>() != null)
+        if(GetComponent<ElementalBlock>() != null)
         {
             print("this is ElementalBlock");
-            eventData.pointerDrag.transform.SetParent(transform);
-            eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
-            elementBlocks.Add(getComponent<ElementalBlock>());
+            PutOn(eventData);
+            elementBlocks.Add(GetComponent<ElementalBlock>());
         }
-        if(getComponent<IfBlock>() != null)
+        if(GetComponent<IfBlock>() != null)
         {
             print("this is IfBlock");
-            eventData.pointerDrag.transform.SetParent(transform);
-            eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
-            elementBlocks.Add(getComponent<IfBlock>());
+            PutOn(eventData);
+            elementBlocks.Add(GetComponent<IfBlock>());
         }
 
-        if(getComponent<IElementBlock>() != null)
+        if(GetComponent<IElementBlock>() != null)
         {
             print("this is IElementBlock");
-            eventData.pointerDrag.transform.SetParent(transform);
-            eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
-            elementBlocks.Add(getComponent<IElementBlock>());
+            PutOn(eventData);
+            elementBlocks.Add(GetComponent<IElementBlock>());
         }
     }
 }

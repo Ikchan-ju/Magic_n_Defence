@@ -5,6 +5,5 @@ public interface ICodeBlock{
 }
 
 public interface IElementBlock{
-    string name;
 
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IfBlock : CodeBlock
+public class IfBlock : CodeBlock, IElementBlock
 {
     public enum Condition{
         Num_Larger, Num_Smaller, Num_Equal,
@@ -19,20 +19,21 @@ public class IfBlock : CodeBlock
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(input != input_backup)
-            output = input * multiple;
-        input_backup = input;
-    }
+    // // Update is called once per frame
+    // void Update()
+    // {
+        
+    // }
 
     float GoForward()
     {
-        if(condition.isTrue)
+        if(IsTrue())
             multiple *= 1;
         else
             multiple *= 0;
         return multiple;
+    }
+    public bool IsTrue(){
+        return true;
     }
 }

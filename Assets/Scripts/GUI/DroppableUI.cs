@@ -15,25 +15,33 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
     }
 
     public void OnPointerEnter(PointerEventData eventData){
-        Color y = Color.yellow;
-        y.a = 0.6f;
-        image.color = y;
+        SetTransparency(Color.yellow, 0.6f);
+    }
+    public void SetTransparency(Color color, float transparency){
+        color.a = transparency;
+        image.color = color;
     }
 
-    public void OnDrop(PointerEventData eventData){
+    public virtual void OnDrop(PointerEventData eventData){
         if(eventData.pointerDrag != null){
-            eventData.pointerDrag.transform.SetParent(transform);
-            eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
+            PutOn(eventData);
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData){
-        Canvas canvas = image.GetComponentInParent<Canvas>();
-        Color c = Color.white;
-        if(canvas.name == "InventoryCanvas")
-            c.a = 1.0f;
-        else
-            c.a = 0.0f;
-        image.color = c;
+    public void PutOn(PointerEventData eventData){
+            eventData.pointerDrag.transform.SetParent(transform);
+            eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
+    }
+
+    public virtual void OnPointerExit(PointerEventData eventData){
+        // Canvas canvas = image.GetComponentInParent<Canvas>();
+        // Color c = Color.white;
+        // if(canvas.name == "InventoryCanvas")
+        //     c.a = 1.0f;
+        // else
+        //     c.a = 0.0f;
+        // image.color = c;
+        print("parent");
+        SetTransparency(Color.white, 0.0f);
     }
 }

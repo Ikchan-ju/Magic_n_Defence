@@ -9,8 +9,7 @@ public class DroppableUI_Spell : DroppableUI
     private static List<ICodeBlock> codeBlocks;
     public void OnDrop(PointerEventData eventData){
         if(eventData.pointerDrag != null){
-            eventData.pointerDrag.transform.SetParent(transform);
-            eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
+            PutOn(eventData);
         }
     }
 }
