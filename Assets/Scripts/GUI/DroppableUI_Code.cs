@@ -23,6 +23,12 @@ public class DroppableUI_Code : DroppableUI
             PutOn(eventData);
             elementBlocks.Add(GetComponent<ElementalBlock>());
         }
+        if(GetComponent<LogicalOperatorBlock>() != null)
+        {
+            print("this is LogicalOperatorBlock");
+            PutOn(eventData);
+            elementBlocks.Add(GetComponent<LogicalOperatorBlock>());
+        }
         if(GetComponent<IfBlock>() != null)
         {
             print("this is IfBlock");
