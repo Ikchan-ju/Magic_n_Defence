@@ -12,7 +12,7 @@ public class LoopBlock : CodeBlock
     public int cap;
     public int count;
     public bool condition;
-    float GoForward()
+    public override float GoForward()
     {
         return multiple;
     }

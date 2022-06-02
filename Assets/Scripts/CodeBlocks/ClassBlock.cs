@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClassBlock : CodeBlock
 {
-    float GoForward()
+    public override float GoForward()
     {
         return multiple;
     }

@@ -7,7 +7,6 @@ public class CodeBlockGUI : MonoBehaviour
     // This Class is a parent class of every code parts
     // i.e. if, num, elemental, loop, class, ...
     // Start is called before the first frame update
-    public string name;
     public float multiple = 1;
     public float source;
     void Start()

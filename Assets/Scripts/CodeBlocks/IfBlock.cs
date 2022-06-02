@@ -10,7 +10,7 @@ public class IfBlock : CodeBlock, IElementBlock
         Attr_Attack, Attr_Defense,
     }
     public Condition condition;
-    public IElementBlock input;
+    public new IElementBlock input;
     public IElementBlock reference;
     
     // Start is called before the first frame update
@@ -25,7 +25,7 @@ public class IfBlock : CodeBlock, IElementBlock
         
     // }
 
-    float GoForward()
+    public override float GoForward()
     {
         if(IsTrue())
             multiple *= 1;

@@ -7,7 +7,6 @@ using System;
 
 public class CodeBlock : MonoBehaviour, ICodeBlock
 {
-    public string name;
     public float multiple = 1;
     public float source;
     public float input;
@@ -27,7 +26,7 @@ public class CodeBlock : MonoBehaviour, ICodeBlock
             output = input * multiple;
         input_backup = input;
     }
-    public float GoForward()
+    public virtual float GoForward()
     {
         return multiple;
     }
