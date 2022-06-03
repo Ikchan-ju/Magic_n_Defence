@@ -34,14 +34,6 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
     }
 
     public virtual void OnPointerExit(PointerEventData eventData){
-        // Canvas canvas = image.GetComponentInParent<Canvas>();
-        // Color c = Color.white;
-        // if(canvas.name == "InventoryCanvas")
-        //     c.a = 1.0f;
-        // else
-        //     c.a = 0.0f;
-        // image.color = c;
-        print("parent");
         SetTransparency(Color.white, 0.0f);
     }
 }
