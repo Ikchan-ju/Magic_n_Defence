@@ -9,19 +9,34 @@ public class NumBlock : MonoBehaviour, IElementBlock
     // Start is called before the first frame update
     private Text text;
     public float number;
-    void Start()
+    public virtual void Start()
     {
-        
         text = GetComponentInChildren<Text>();
         text.text = ((int)number).ToString();
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if((int)number != Int32.Parse(text.text)){
             text.text = ((int)number).ToString();
         }
+    }
+
+    public static bool operator ==(NumBlock input, NumBlock refer){
+        return input.number == refer.number;
+    }
+    public static bool operator >=(NumBlock input, NumBlock refer){
+        return input.number >= refer.number;
+    }
+    public static bool operator <=(NumBlock input, NumBlock refer){
+        return input.number <= refer.number;
+    }
+    public static bool operator >(NumBlock input, NumBlock refer){
+        return input.number > refer.number;
+    }
+    public static bool operator <(NumBlock input, NumBlock refer){
+        return input.number < refer.number;
     }
     // public string name;
     // public Condition.Description description;

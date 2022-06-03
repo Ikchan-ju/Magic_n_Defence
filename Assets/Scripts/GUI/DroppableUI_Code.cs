@@ -10,6 +10,7 @@ public class DroppableUI_Code : DroppableUI
     private static NumBlock numBlock_Input;
     private static LogicalOperatorBlock logicalOperatorBlock;
     private static NumBlock numBlock_Reference;
+    private static ActionBlock actionBlock;
     private Transform droppedTransform;
     public override void OnDrop(PointerEventData eventData){
         droppedTransform = eventData.pointerDrag.transform;
@@ -45,6 +46,12 @@ public class DroppableUI_Code : DroppableUI
             PutOn(eventData);
             elementBlocks.Add(droppedTransform.GetComponent<IfBlock>());
         }
+        if(droppedTransform.GetComponent<ActionBlock>() != null)
+        {
+            print("this is ActionBlock");
+            PutOn(eventData);
+            elementBlocks.Add(droppedTransform.GetComponent<ActionBlock>());
+        }
         if(droppedTransform.GetComponent<IElementBlock>() != null)
         {
             print("this is IElementBlock");
@@ -62,15 +69,30 @@ public class DroppableUI_Code : DroppableUI
             case "IfSlot_ReferenceNum":
                 numBlock_Reference = droppedTransform.GetComponent<NumBlock>();
                 break;
+            case "IfSlot_Action":
+                actionBlock = droppedTransform.GetComponent<ActionBlock>();
+                break;
         }
     }
     private void Update() {
-        if(numBlock_Input == null)
-            return;
-        if(logicalOperatorBlock == null)
-            return;
-        if(numBlock_Reference == null)
+        if(numBlock_Input == null || logicalOperatorBlock == null || numBlock_Reference == null || actionBlock == null)
             return;
         print("The condition is " + numBlock_Input.number.ToString() + logicalOperatorBlock.logicalOperator.ToString() + numBlock_Reference.number.ToString());
+    }
+    private bool getCondition(){ // Need to check that this switch-case can be simplified with delegate.
+        if(numBlock_Input == null || logicalOperatorBlock == null || numBlock_Reference == null)
+            return false;
+        switch(logicalOperatorBlock.logicalOperator){ // Every cases contains equality.
+            case ">":
+                return numBlock_Input >= numBlock_Reference;
+                break;
+            case "=":
+                return numBlock_Input == numBlock_Reference;
+                break;
+            case "<":
+                return numBlock_Input <= numBlock_Reference;
+                break;
+        }
+        return false;
     }
 }
