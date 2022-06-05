@@ -26,6 +26,32 @@ public class NumBlock : MonoBehaviour, IElementBlock
     public static bool operator ==(NumBlock input, NumBlock refer){
         return input?.number == refer?.number;
     }
+    // override object.Equals
+    public override bool Equals(object obj)
+    {
+        //
+        // See the full list of guidelines at
+        //   http://go.microsoft.com/fwlink/?LinkID=85237
+        // and also the guidance for operator== at
+        //   http://go.microsoft.com/fwlink/?LinkId=85238
+        //
+        
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+        
+        // TODO: write your implementation of Equals() here
+        
+        return base.Equals (obj);
+    }
+    
+    // override object.GetHashCode
+    public override int GetHashCode()
+    {
+        // TODO: write your implementation of GetHashCode() here
+        return base.GetHashCode();
+    }
     public static bool operator !=(NumBlock input, NumBlock refer){
         return input?.number != refer?.number;
     }
@@ -41,25 +67,5 @@ public class NumBlock : MonoBehaviour, IElementBlock
     public static bool operator <(NumBlock input, NumBlock refer){
         return input?.number < refer?.number;
     }
-    // public string name;
-    // public Condition.Description description;
-
-    // public bool Comparison(NumBlock reference){
-    //     switch(description){
-    //         case Condition.Description.larger:
-    //             if(number >= reference.number)
-    //                 return true;
-    //             break;
-    //         case Condition.Description.smaller:
-    //             if(number <= reference.number)
-    //                 return true;
-    //             break;
-    //         case Condition.Description.equal:
-    //             if(number == reference.number)
-    //                 return true;
-    //             break;
-    //     }
-    //     return false;
-    // }
 }
 
