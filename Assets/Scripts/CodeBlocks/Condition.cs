@@ -17,7 +17,7 @@ public class Condition : MonoBehaviour
     // {
     //     isTrue = input.Comparison(reference);
     // }
-    public void Estimate(ElementalBlock input, ElementalBlock reference)
+    public void Estimate(AttributionBlock input, AttributionBlock reference)
     {
         isTrue = input.Comparison(reference);
     }

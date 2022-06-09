@@ -67,5 +67,17 @@ public class NumBlock : MonoBehaviour, IElementBlock
     public static bool operator <(NumBlock input, NumBlock refer){
         return input?.number < refer?.number;
     }
+    public static float operator +(NumBlock input, NumBlock refer){
+        return input.number + refer.number;
+    }
+    public static float operator -(NumBlock input, NumBlock refer){
+        return input.number - refer.number;
+    }
+    public static float operator *(NumBlock input, NumBlock refer){
+        return input.number * refer.number;
+    }
+    public static float operator /(NumBlock input, NumBlock refer){
+        return input.number / refer.number;
+    }
 }
 

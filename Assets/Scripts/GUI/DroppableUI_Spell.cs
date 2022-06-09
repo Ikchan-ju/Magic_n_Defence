@@ -18,12 +18,6 @@ public class DroppableUI_Spell : DroppableUI
         print(droppedTransform.childCount);
         print(droppedTransform.GetChild(0).name);
         print(droppedTransform.GetChild(0).GetType().ToString());
-        if(droppedTransform.GetComponent<ActionBlock>() != null)
-        {
-            print("this is ActionBlock");
-            PutOn(eventData);
-            codeBlocks.Add(droppedTransform.GetComponent<ActionBlock>());
-        }
         if(droppedTransform.GetComponent<ClassBlock>() != null)
         {
             print("this is ClassBlock");
@@ -35,12 +29,6 @@ public class DroppableUI_Spell : DroppableUI
             print("this is LoopBlock");
             PutOn(eventData);
             codeBlocks.Add(droppedTransform.GetComponent<LoopBlock>());
-        }
-        if(droppedTransform.GetComponent<IfBlock>() != null)
-        {
-            print("this is IfBlock");
-            PutOn(eventData);
-            codeBlocks.Add(droppedTransform.GetComponent<IfBlock>());
         }
 
         if(droppedTransform.GetComponent<CodeBlock>() != null)

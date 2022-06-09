@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionBlock : CodeBlock, IElementBlock
+public class ActionBlock : MonoBehaviour, IElementBlock
 {
-    public override float GoForward()
-    {
-        return multiple;
+    public virtual void doAction(){
+        print("DoAction");
+    }
+    public virtual void readyAction(float percentage){
+        print("ReadyAction");
+        print((int)(percentage*100) + "% Completed!");
     }
 }

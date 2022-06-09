@@ -5,9 +5,9 @@ using System;
 using System.IO;
 using System.Linq;
 
-public class ElementalBlock : MonoBehaviour, IElementBlock
+public class AttributionBlock : MonoBehaviour, IElementBlock
 {
-    ElementalBlock(){
+    AttributionBlock(){
         advantageTable = new Dictionary<Elemental, Dictionary<Elemental, bool>>();
         var label = File.ReadLines("AdavantageTable.csv").Where(line => line.Split(',')[0] == "AdvantageTable");
         var dict = File.ReadLines("AdavantageTable.csv").Where(line => line.Split(',')[0] != "AdvantageTable").Select((line, i) => line.Split(',').ToDictionary(key => label.ElementAt(i), str => str));
@@ -28,7 +28,7 @@ public class ElementalBlock : MonoBehaviour, IElementBlock
     public bool IsStrong(Elemental input, Elemental reference){
         return false;
     }
-    public bool Comparison(ElementalBlock reference){
+    public bool Comparison(AttributionBlock reference){
         switch(description){
             case Condition.Description.strong:
                 if(advantageTable[elemental][reference.elemental])

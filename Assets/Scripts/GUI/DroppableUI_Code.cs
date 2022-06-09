@@ -7,10 +7,11 @@ using UnityEngine.UI;
 public class DroppableUI_Code : DroppableUI
 {
     private static List<IElementBlock> elementBlocks = new List<IElementBlock>();
-    private static NumBlock numBlock_Input;
+    private static ManaInputBlock manaInput;
     private static LogicalOperatorBlock logicalOperatorBlock;
-    private static NumBlock numBlock_Reference;
+    private static NumBlock referenceNum;
     private static ActionBlock actionBlock;
+    private static ClassBlock classBlock;
     private Transform droppedTransform;
     public override void OnDrop(PointerEventData eventData){
         droppedTransform = eventData.pointerDrag.transform;
@@ -21,10 +22,10 @@ public class DroppableUI_Code : DroppableUI
             print("this is NumBlock");
             elementBlocks.Add(droppedTransform.GetComponent<NumBlock>());
         }
-        if(droppedTransform.GetComponent<ElementalBlock>() != null)
+        if(droppedTransform.GetComponent<AttributionBlock>() != null)
         {
             print("this is ElementalBlock");
-            elementBlocks.Add(droppedTransform.GetComponent<ElementalBlock>());
+            elementBlocks.Add(droppedTransform.GetComponent<AttributionBlock>());
         }
         if(droppedTransform.GetComponent<LogicalOperatorBlock>() != null)
         {
@@ -49,9 +50,9 @@ public class DroppableUI_Code : DroppableUI
 
         switch(transform.name){
             case "IfSlot_InputNum":
-                if(droppedTransform.GetComponent<NumBlock>() == null)
+                if(droppedTransform.GetComponent<ManaInputBlock>() == null)
                     break;
-                numBlock_Input = droppedTransform.GetComponent<NumBlock>();
+                manaInput = droppedTransform.GetComponent<ManaInputBlock>();
                 PutOn(eventData);
                 break;
             case "IfSlot_LogicalOperator":
@@ -63,7 +64,7 @@ public class DroppableUI_Code : DroppableUI
             case "IfSlot_ReferenceNum":
                 if(droppedTransform.GetComponent<NumBlock>() == null)
                     break;
-                numBlock_Reference = droppedTransform.GetComponent<NumBlock>();
+                referenceNum = droppedTransform.GetComponent<NumBlock>();
                 PutOn(eventData);
                 break;
             case "IfSlot_Action":
@@ -78,29 +79,12 @@ public class DroppableUI_Code : DroppableUI
         SetTransparency(Color.white, 1.0f);
     }
     private void Update() {
-        if(numBlock_Input == null || logicalOperatorBlock == null || numBlock_Reference == null || actionBlock == null)
+        if(manaInput == null || logicalOperatorBlock == null || referenceNum == null || actionBlock == null)
             return;
-        // if(numBlock_Input == null)
-        //     return;
-        // if(logicalOperatorBlock == null)
-        //     return;
-        // if(numBlock_Reference == null)
-        //     return;
-        // if(actionBlock == null)
-        //     return;
-        print("The condition (" + numBlock_Input.number.ToString() + logicalOperatorBlock.logicalOperator.ToString() + numBlock_Reference.number.ToString() + ") is " + getCondition().ToString() + (getCondition() ? ". Do Action" : "."));
-    }
-    private bool getCondition(){ // Need to check that this switch-case can be simplified with delegate.
-        if(numBlock_Input == null || logicalOperatorBlock == null || numBlock_Reference == null)
-            return false;
-        switch(logicalOperatorBlock.logicalOperator){ // Every cases contains equality.
-            case ">":
-                return numBlock_Input >= numBlock_Reference;
-            case "=":
-                return numBlock_Input == numBlock_Reference;
-            case "<":
-                return numBlock_Input <= numBlock_Reference;
+        if(classBlock == null){
+            classBlock = new ClassBlock(manaInput, logicalOperatorBlock, referenceNum, actionBlock);
         }
-        return false;
+        classBlock.GoForward();
+        //print("The condition (" + manaInput.number.ToString() + logicalOperatorBlock.logicalOperator.ToString() + referenceNum.number.ToString() + ") is " + classBlock.getCondition().ToString() + (classBlock.getCondition() ? ". Do Action" : "."));
     }
 }
