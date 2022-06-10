@@ -13,5 +13,7 @@ public class ClickableUI_Code : MonoBehaviour, IPointerClickHandler
             print("Double Click");
         }
     }
+    private async void ClickJudgement(){
+    }
 
 }
