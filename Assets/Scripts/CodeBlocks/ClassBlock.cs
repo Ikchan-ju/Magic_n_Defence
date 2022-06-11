@@ -9,11 +9,11 @@ public class ClassBlock : CodeBlock
         LogicalOperation, AttributionSuperiority
     }
     public Mode mode;
-    private ManaInputBlock manaInput;
-    private LogicalOperatorBlock logicalOperator;
-    private NumBlock referenceNum;
-    private AttributionBlock attribution;
-    private ActionBlock action;
+    public ManaInputBlock manaInput;
+    public LogicalOperatorBlock logicalOperator;
+    public NumBlock referenceNum;
+    public AttributionBlock attribution;
+    public ActionBlock action;
 
     public ClassBlock(ManaInputBlock manaInputBlock, LogicalOperatorBlock logicalOperatorBlock, NumBlock numBlock, ActionBlock actionBlock){
         Init(manaInputBlock, logicalOperatorBlock, numBlock, actionBlock);

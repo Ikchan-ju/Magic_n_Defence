@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class DroppableUI_Code : DroppableUI
 {
     private static List<IElementBlock> elementBlocks = new List<IElementBlock>();
-    private static ManaInputBlock manaInput;
-    private static LogicalOperatorBlock logicalOperatorBlock;
-    private static NumBlock referenceNum;
-    private static ActionBlock actionBlock;
-    private static ClassBlock classBlock;
+    public static ManaInputBlock manaInput;
+    public static LogicalOperatorBlock logicalOperatorBlock;
+    public static NumBlock referenceNum;
+    public static ActionBlock actionBlock;
+    public static ClassBlock classBlock;
     private Transform droppedTransform;
     public override void OnDrop(PointerEventData eventData){
         droppedTransform = eventData.pointerDrag.transform;
@@ -74,6 +74,13 @@ public class DroppableUI_Code : DroppableUI
                 PutOn(eventData);
                 break;
         }
+    }
+    public void ResetElement(){
+        manaInput = null;
+        logicalOperatorBlock = null;
+        referenceNum = null;
+        actionBlock = null;
+        classBlock = null;
     }
     public override void OnPointerExit(PointerEventData eventData){
         SetTransparency(Color.white, 1.0f);

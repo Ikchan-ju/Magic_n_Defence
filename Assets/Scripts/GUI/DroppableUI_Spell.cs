@@ -13,11 +13,6 @@ public class DroppableUI_Spell : DroppableUI
         print("Drop");
         if(eventData.pointerDrag == null)
             return;
-        print("Null check pass");
-        print(droppedTransform.name);
-        print(droppedTransform.childCount);
-        print(droppedTransform.GetChild(0).name);
-        print(droppedTransform.GetChild(0).GetType().ToString());
         if(droppedTransform.GetComponent<ClassBlock>() != null)
         {
             print("this is ClassBlock");
