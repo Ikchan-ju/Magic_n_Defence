@@ -9098,6 +9098,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1760984092}
     m_Modifications:
+    - target: {fileID: -4933079676579437568, guid: 5646462e375ca0244a2db689d8607a39, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 21300000, guid: 086956d6f0fa3bf49bc351dff30b2d8b, type: 3}
+    - target: {fileID: -4933079676579437568, guid: 5646462e375ca0244a2db689d8607a39, type: 3}
+      propertyPath: action
+      value: 
+      objectReference: {fileID: 1543654486338893124, guid: 9457d5af8f20c424099e10f51be62ccd, type: 3}
+    - target: {fileID: 2993183505574593561, guid: 5646462e375ca0244a2db689d8607a39, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0bbb94aec0ff1874db8021b6bb454e2a, type: 3}
     - target: {fileID: 3396632278448670474, guid: 5646462e375ca0244a2db689d8607a39, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -9185,6 +9197,10 @@ PrefabInstance:
     - target: {fileID: 3457473265785568491, guid: 5646462e375ca0244a2db689d8607a39, type: 3}
       propertyPath: m_Name
       value: Action
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828256060879718130, guid: 5646462e375ca0244a2db689d8607a39, type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5646462e375ca0244a2db689d8607a39, type: 3}
@@ -9804,6 +9820,10 @@ PrefabInstance:
       propertyPath: image
       value: 
       objectReference: {fileID: 21300000, guid: cf840c7b482b73945a78071b94e039f2, type: 3}
+    - target: {fileID: -4933079676579437568, guid: 5646462e375ca0244a2db689d8607a39, type: 3}
+      propertyPath: action
+      value: 
+      objectReference: {fileID: 1543654486338893124, guid: 9457d5af8f20c424099e10f51be62ccd, type: 3}
     - target: {fileID: 2993183505574593561, guid: 5646462e375ca0244a2db689d8607a39, type: 3}
       propertyPath: m_Sprite
       value: 
