@@ -12,6 +12,11 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private Vector3 goFront = new Vector3(0, 0, 100f);
 
     private void Awake(){
+        if(transform?.GetComponentsInParent<Canvas>() != null && transform.GetComponentsInParent<Canvas>().Length != 0){
+            Init();
+        }
+    }
+    public void Init(){
         canvas = transform.GetComponentsInParent<Canvas>()[0].transform;
         rect = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();

@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System;
 
-public class CodeBlock : ICodeBlock
+public class CodeBlock : MonoBehaviour, ICodeBlock
 {
     public float multiple = 1;
     public float source;

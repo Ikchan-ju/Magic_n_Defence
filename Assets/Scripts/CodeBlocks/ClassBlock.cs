@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class ClassBlock : CodeBlock
 {
@@ -49,5 +51,21 @@ public class ClassBlock : CodeBlock
                 return manaInput <= referenceNum;
         }
         return false;
+    }
+    // Start is called before the first frame update
+    private Text text;
+    public float number;
+    public virtual void Start()
+    {
+        text = GetComponentInChildren<Text>();
+        text.text = ((int)number).ToString();
+    }
+
+    // Update is called once per frame
+    public virtual void Update()
+    {
+        if((int)number != Int32.Parse(text.text)){
+            text.text = ((int)number).ToString();
+        }
     }
 }

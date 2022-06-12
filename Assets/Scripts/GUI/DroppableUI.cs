@@ -29,8 +29,12 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
     }
 
     public void PutOn(PointerEventData eventData){
-            eventData.pointerDrag.transform.SetParent(transform);
-            eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
+        eventData.pointerDrag.transform.SetParent(transform);
+        eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
+    }
+    public void PutOn(GameObject gameObject){
+        gameObject.transform.SetParent(transform);
+        gameObject.transform.GetComponent<RectTransform>().position = rect.position;
     }
 
     public virtual void OnPointerExit(PointerEventData eventData){

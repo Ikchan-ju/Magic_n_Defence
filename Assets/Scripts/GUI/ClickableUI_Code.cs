@@ -5,6 +5,16 @@ using UnityEngine.EventSystems;
 
 public class ClickableUI_Code : MonoBehaviour, IPointerClickHandler
 {
+    public GameObject code;
+    private RectTransform rect;
+    private float left = -15f;
+    private float right = -15f;
+    private float top = -15f;
+    private float bottom = -15f;
+
+    private void Awake(){
+        rect = GetComponent<RectTransform>();
+    }
     public void OnPointerClick(PointerEventData eventData){
         print("click event. clickCount : " + eventData.clickCount + ", clickTime : " + eventData.clickTime);
         if(eventData.clickCount  == 1){
@@ -18,10 +28,23 @@ public class ClickableUI_Code : MonoBehaviour, IPointerClickHandler
             DroppableUI_Code.logicalOperatorBlock = classBlock.logicalOperator;
             DroppableUI_Code.referenceNum = classBlock.referenceNum;
             DroppableUI_Code.actionBlock = classBlock.action;
+        }else{
+            GameObject new_code = Instantiate(code);
+            PutOn(new_code);
         }
         }else if(eventData.clickCount  == 2){
             print("Double Click");
         }
     }
 
+    public void PutOn(GameObject gameObject){
+        gameObject.transform.SetParent(transform);
+        RectTransform rectTransform = gameObject.transform.GetComponent<RectTransform>();
+        rectTransform.SetLeft(left);
+        rectTransform.SetRight(right);
+        rectTransform.SetTop(top);
+        rectTransform.SetBottom(bottom);
+        rectTransform.position = rect.position;
+        gameObject.GetComponent<DraggableUI>().Init();
+    }
 }
