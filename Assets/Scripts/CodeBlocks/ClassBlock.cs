@@ -11,44 +11,53 @@ public class ClassBlock : CodeBlock
         LogicalOperation, AttributionSuperiority
     }
     public Mode mode;
-    public ManaInputBlock manaInput;
-    public LogicalOperatorBlock logicalOperator;
-    public NumBlock referenceNum;
-    public AttributionBlock attribution;
-    public ActionBlock action;
+    private ManaInputBlock manaInputBlock;
+    private LogicalOperatorBlock logicalOperatorBlock;
+    private NumBlock referenceNumBlock;
+    private AttributionBlock attribution;
+    private ActionBlock actionBlock;
+    public GameObject manaInputObject;
+    public GameObject logicalOperatorObject;
+    public GameObject referenceNumObject;
+    public GameObject actionObject;
 
-    public ClassBlock(ManaInputBlock manaInputBlock, LogicalOperatorBlock logicalOperatorBlock, NumBlock numBlock, ActionBlock actionBlock){
-        Init(manaInputBlock, logicalOperatorBlock, numBlock, actionBlock);
+    public ClassBlock(GameObject manaInputBlock, GameObject logicalOperatorBlock, GameObject referenceNumBlock, GameObject actionBlock){
+        Init(manaInputBlock, logicalOperatorBlock, referenceNumBlock, actionBlock);
     }
-    public void Init(ManaInputBlock manaInputBlock, LogicalOperatorBlock logicalOperatorBlock, NumBlock numBlock, ActionBlock actionBlock){
-        this.manaInput = manaInputBlock;
-        this.logicalOperator = logicalOperatorBlock;
-        this.referenceNum = numBlock;
-        this.action = actionBlock;
+    public void Init(GameObject manaInputBlock, GameObject logicalOperatorBlock, GameObject referenceNumBlock, GameObject actionBlock){
+        this.manaInputObject = manaInputBlock;
+        this.logicalOperatorObject = logicalOperatorBlock;
+        this.referenceNumObject = referenceNumBlock;
+        this.actionObject = actionBlock;
         this.mode = Mode.LogicalOperation;
+
+        this.manaInputBlock = this.manaInputObject.GetComponent<ManaInputBlock>();
+        this.logicalOperatorBlock = this.logicalOperatorObject.GetComponent<LogicalOperatorBlock>();
+        this.referenceNumObject = this.referenceNumObject.GetComponent<NumBlock>();
+        this.actionObject = this.actionObject.GetComponent<ActionBlock>();
     }
     public override float GoForward()
     {
         if(mode == Mode.LogicalOperation){
             if(getCondition()){
-                action.doAction();
+                actionBlock.doAction();
             }
             else{
-                action.readyAction(manaInput/referenceNum);
+                actionBlock.readyAction(manaInput/referenceNumBlock);
             }
         }
         return multiple;
     }
     public bool getCondition(){ // Need to check that this switch-case can be simplified with delegate.
-        if(manaInput == null || logicalOperator == null || referenceNum == null)
+        if(manaInput == null || logicalOperatorBlock == null || referenceNumBlock == null)
             return false;
-        switch(logicalOperator.logicalOperator){ // Every cases contains equality.
+        switch(logicalOperatorBlock.logicalOperator){ // Every cases contains equality.
             case ">":
-                return manaInput >= referenceNum;
+                return manaInput >= referenceNumBlock;
             case "=":
-                return manaInput == referenceNum;
+                return manaInput == referenceNumBlock;
             case "<":
-                return manaInput <= referenceNum;
+                return manaInput <= referenceNumBlock;
         }
         return false;
     }

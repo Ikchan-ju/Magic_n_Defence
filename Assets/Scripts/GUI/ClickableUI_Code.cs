@@ -24,10 +24,10 @@ public class ClickableUI_Code : MonoBehaviour, IPointerClickHandler
         {
             var classBlock = GetComponentInChildren<ClassBlock>();
             DroppableUI_Code.classBlock = classBlock;
-            DroppableUI_Code.manaInput = classBlock.manaInput;
-            DroppableUI_Code.logicalOperatorBlock = classBlock.logicalOperator;
-            DroppableUI_Code.referenceNum = classBlock.referenceNum;
-            DroppableUI_Code.actionBlock = classBlock.action;
+            DroppableUI_Code.manaInputBlock = classBlock.manaInputObject;
+            DroppableUI_Code.logicalOperatorBlock = classBlock.logicalOperatorObject;
+            DroppableUI_Code.referenceNumBlock = classBlock.referenceNumObject;
+            DroppableUI_Code.actionBlock = classBlock.actionObject;
         }else{
             GameObject new_code = Instantiate(code);
             PutOn(new_code);

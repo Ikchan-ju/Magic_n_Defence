@@ -7,11 +7,16 @@ using UnityEngine.UI;
 public class DroppableUI_Code : DroppableUI
 {
     private static List<IElementBlock> elementBlocks = new List<IElementBlock>();
-    public static ManaInputBlock manaInput;
-    public static LogicalOperatorBlock logicalOperatorBlock;
-    public static NumBlock referenceNum;
-    public static ActionBlock actionBlock;
-    public static ClassBlock classBlock;
+    // public static ManaInputBlock manaInput;
+    // public static LogicalOperatorBlock logicalOperatorBlock;
+    // public static NumBlock referenceNum;
+    // public static ActionBlock actionBlock;
+    // public static ClassBlock classBlock;
+    public static GameObject manaInputBlock;
+    public static GameObject logicalOperatorBlock;
+    public static GameObject referenceNumBlock;
+    public static GameObject actionBlock;
+    public static GameObject classBlock;
     private Transform droppedTransform;
     public override void OnDrop(PointerEventData eventData){
         droppedTransform = eventData.pointerDrag.transform;
@@ -52,44 +57,49 @@ public class DroppableUI_Code : DroppableUI
             case "IfSlot_InputNum":
                 if(droppedTransform.GetComponent<ManaInputBlock>() == null)
                     break;
-                manaInput = droppedTransform.GetComponent<ManaInputBlock>();
+                manaInputBlock = droppedTransform.gameObject;
                 PutOn(eventData);
                 break;
             case "IfSlot_LogicalOperator":
                 if(droppedTransform.GetComponent<LogicalOperatorBlock>() == null)
                     break;
-                logicalOperatorBlock = droppedTransform.GetComponent<LogicalOperatorBlock>();
+                logicalOperatorBlock = droppedTransform.gameObject;
                 PutOn(eventData);
                 break;
             case "IfSlot_ReferenceNum":
                 if(droppedTransform.GetComponent<NumBlock>() == null)
                     break;
-                referenceNum = droppedTransform.GetComponent<NumBlock>();
+                referenceNumBlock = droppedTransform.gameObject;
                 PutOn(eventData);
                 break;
             case "IfSlot_Action":
                 if(droppedTransform.GetComponent<ActionBlock>() == null)
                     break;
-                actionBlock = droppedTransform.GetComponent<ActionBlock>();
+                actionBlock = droppedTransform.gameObject;
                 PutOn(eventData);
                 break;
         }
     }
     public void ResetElement(){
-        manaInput = null;
-        logicalOperatorBlock = null;
-        referenceNum = null;
-        actionBlock = null;
-        classBlock = null;
+        // manaInput = null;
+        // logicalOperatorBlock = null;
+        // referenceNum = null;
+        // actionBlock = null;
+        // classBlock = null;
+        manaInputBlock.SetActive(false);
+        logicalOperatorBlock.SetActive(false);
+        referenceNumBlock.SetActive(false);
+        actionBlock.SetActive(false);
+        classBlock.SetActive(false);
     }
     public override void OnPointerExit(PointerEventData eventData){
         SetTransparency(Color.white, 1.0f);
     }
     private void Update() {
-        if(manaInput == null || logicalOperatorBlock == null || referenceNum == null || actionBlock == null)
+        if(manaInputBlock == null || logicalOperatorBlock == null || referenceNumBlock == null || actionBlock == null)
             return;
         if(classBlock == null){
-            classBlock = new ClassBlock(manaInput, logicalOperatorBlock, referenceNum, actionBlock);
+            classBlock = new ClassBlock(manaInputBlock, logicalOperatorBlock, referenceNumBlock, actionBlock);
         }
         classBlock.GoForward();
         //print("The condition (" + manaInput.number.ToString() + logicalOperatorBlock.logicalOperator.ToString() + referenceNum.number.ToString() + ") is " + classBlock.getCondition().ToString() + (classBlock.getCondition() ? ". Do Action" : "."));
