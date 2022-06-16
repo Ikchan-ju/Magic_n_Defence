@@ -33,8 +33,8 @@ public class ClassBlock : CodeBlock
 
         this.manaInputBlock = this.manaInputObject.GetComponent<ManaInputBlock>();
         this.logicalOperatorBlock = this.logicalOperatorObject.GetComponent<LogicalOperatorBlock>();
-        this.referenceNumObject = this.referenceNumObject.GetComponent<NumBlock>();
-        this.actionObject = this.actionObject.GetComponent<ActionBlock>();
+        this.referenceNumBlock = this.referenceNumObject.GetComponent<NumBlock>();
+        this.actionBlock = this.actionObject.GetComponent<ActionBlock>();
     }
     public override float GoForward()
     {
@@ -43,21 +43,21 @@ public class ClassBlock : CodeBlock
                 actionBlock.doAction();
             }
             else{
-                actionBlock.readyAction(manaInput/referenceNumBlock);
+                actionBlock.readyAction(manaInputBlock/referenceNumBlock);
             }
         }
         return multiple;
     }
     public bool getCondition(){ // Need to check that this switch-case can be simplified with delegate.
-        if(manaInput == null || logicalOperatorBlock == null || referenceNumBlock == null)
+        if(manaInputBlock == null || logicalOperatorBlock == null || referenceNumBlock == null)
             return false;
         switch(logicalOperatorBlock.logicalOperator){ // Every cases contains equality.
             case ">":
-                return manaInput >= referenceNumBlock;
+                return manaInputBlock >= referenceNumBlock;
             case "=":
-                return manaInput == referenceNumBlock;
+                return manaInputBlock == referenceNumBlock;
             case "<":
-                return manaInput <= referenceNumBlock;
+                return manaInputBlock <= referenceNumBlock;
         }
         return false;
     }

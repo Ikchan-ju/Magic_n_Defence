@@ -19,19 +19,19 @@ public class ClickableUI_Code : MonoBehaviour, IPointerClickHandler
         print("click event. clickCount : " + eventData.clickCount + ", clickTime : " + eventData.clickTime);
         if(eventData.clickCount  == 1){
             print("Click");
-            
-        if(GetComponentInChildren<ClassBlock>() != null)
-        {
-            var classBlock = GetComponentInChildren<ClassBlock>();
-            DroppableUI_Code.classBlock = classBlock;
-            DroppableUI_Code.manaInputBlock = classBlock.manaInputObject;
-            DroppableUI_Code.logicalOperatorBlock = classBlock.logicalOperatorObject;
-            DroppableUI_Code.referenceNumBlock = classBlock.referenceNumObject;
-            DroppableUI_Code.actionBlock = classBlock.actionObject;
-        }else{
-            GameObject new_code = Instantiate(code);
-            PutOn(new_code);
-        }
+            DroppableUI_Code.ResetElement();
+            if(GetComponentInChildren<ClassBlock>() != null)
+            {
+                ClassBlock classBlock = GetComponentInChildren<ClassBlock>();
+                DroppableUI_Code.classBlock = classBlock;
+                DroppableUI_Code.manaInputBlock = classBlock.manaInputObject;
+                DroppableUI_Code.logicalOperatorBlock = classBlock.logicalOperatorObject;
+                DroppableUI_Code.referenceNumBlock = classBlock.referenceNumObject;
+                DroppableUI_Code.actionBlock = classBlock.actionObject;
+            }else{
+                GameObject new_code = Instantiate(code);
+                PutOn(new_code);
+            }
         }else if(eventData.clickCount  == 2){
             print("Double Click");
         }

@@ -16,7 +16,7 @@ public class DroppableUI_Code : DroppableUI
     public static GameObject logicalOperatorBlock;
     public static GameObject referenceNumBlock;
     public static GameObject actionBlock;
-    public static GameObject classBlock;
+    public static ClassBlock classBlock;
     private Transform droppedTransform;
     public override void OnDrop(PointerEventData eventData){
         droppedTransform = eventData.pointerDrag.transform;
@@ -80,7 +80,7 @@ public class DroppableUI_Code : DroppableUI
                 break;
         }
     }
-    public void ResetElement(){
+    public static void ResetElement(){
         // manaInput = null;
         // logicalOperatorBlock = null;
         // referenceNum = null;
@@ -90,7 +90,7 @@ public class DroppableUI_Code : DroppableUI
         logicalOperatorBlock.SetActive(false);
         referenceNumBlock.SetActive(false);
         actionBlock.SetActive(false);
-        classBlock.SetActive(false);
+        classBlock = null;
     }
     public override void OnPointerExit(PointerEventData eventData){
         SetTransparency(Color.white, 1.0f);

@@ -29,9 +29,11 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
     }
 
     public void PutOn(PointerEventData eventData){
-        if(tranform.GetComponentInChild<DraggableUI>() != null){
-            transform.SetParent(eventData.pointerDrag.transform);
-            rect.position = eventData.pointerDrag.GetComponent<RectTransform>().position;
+        if(transform.GetComponentInChildren<DraggableUI>() != null){
+            print("change");
+            var existingTransform = transform.GetComponentInChildren<DraggableUI>().transform;
+            existingTransform.SetParent(eventData.pointerDrag.GetComponent<DraggableUI>().previousParent);
+            existingTransform.GetComponent<RectTransform>().position = eventData.pointerDrag.GetComponent<DraggableUI>().previousParent.GetComponent<RectTransform>().position;
         }
         eventData.pointerDrag.transform.SetParent(transform);
         eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Transform canvas;
-    private Transform previousParent;
+    public Transform previousParent;
     private RectTransform rect;
     private CanvasGroup canvasGroup;
     private Vector3 goFront = new Vector3(0, 0, 100f);
