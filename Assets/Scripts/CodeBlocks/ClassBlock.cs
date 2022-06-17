@@ -31,6 +31,9 @@ public class ClassBlock : CodeBlock
         this.actionObject = actionBlock;
         this.mode = Mode.LogicalOperation;
 
+        Init();
+    }
+    public void Init(){
         this.manaInputBlock = this.manaInputObject.GetComponent<ManaInputBlock>();
         this.logicalOperatorBlock = this.logicalOperatorObject.GetComponent<LogicalOperatorBlock>();
         this.referenceNumBlock = this.referenceNumObject.GetComponent<NumBlock>();

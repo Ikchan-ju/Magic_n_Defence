@@ -80,17 +80,48 @@ public class DroppableUI_Code : DroppableUI
                 break;
         }
     }
-    public static void ResetElement(){
+    public static void SetClassBlock(ClassBlock _classBlock){
+        if(classBlock == null){
+            classBlock = _classBlock;
+            return;
+        }
+        
+        print("SetClassBlock");
+        classBlock = _classBlock;
+        manaInputBlock = classBlock.manaInputObject;
+        logicalOperatorBlock = classBlock.logicalOperatorObject;
+        referenceNumBlock = classBlock.referenceNumObject;
+        actionBlock = classBlock.actionObject;
+    }
+    public static void DeactivateElement(){
         // manaInput = null;
         // logicalOperatorBlock = null;
         // referenceNum = null;
         // actionBlock = null;
         // classBlock = null;
-        manaInputBlock.SetActive(false);
-        logicalOperatorBlock.SetActive(false);
-        referenceNumBlock.SetActive(false);
-        actionBlock.SetActive(false);
-        classBlock = null;
+        if(classBlock == null) return;
+        print("Deactive");
+        manaInputBlock?.SetActive(false);
+        logicalOperatorBlock?.SetActive(false);
+        referenceNumBlock?.SetActive(false);
+        actionBlock?.SetActive(false);
+        // classBlock = null;
+    }
+    public static void BackupElement(){
+        if(classBlock == null) return;
+        print("Backup");
+        classBlock.manaInputObject = manaInputBlock;
+        classBlock.logicalOperatorObject = logicalOperatorBlock;
+        classBlock.referenceNumObject = referenceNumBlock;
+        classBlock.actionObject = actionBlock;
+        classBlock.Init();
+    }
+    public static void ActivateElement(){
+        print("Active");
+        manaInputBlock?.SetActive(true);
+        logicalOperatorBlock?.SetActive(true);
+        referenceNumBlock?.SetActive(true);
+        actionBlock?.SetActive(true);
     }
     public override void OnPointerExit(PointerEventData eventData){
         SetTransparency(Color.white, 1.0f);
