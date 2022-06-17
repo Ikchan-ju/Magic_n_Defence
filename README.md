@@ -12,13 +12,22 @@ what to do:
 3. Make spell design system
     structure of spell design system
     
-        Spells
-        ├── Loop
-        |   ├── For
-        |   └── While
+    Spells : ClassBlock
+    ├── Loop
+    |   ├── For
+    |   └── While
+    └── ClassBlock
         ├── Condition
-        |   ├── Numeric
-        |   └── Elemental
+        |   ├── LogicalOpertation (Numeric)
+        |   |   ├── ManaInputBlock
+        |   |   ├── LogicalOperatorBlock
+        |   |   └── NumBlock
+        |   └── Attribution
+        |       └── TBD
         └── Action
+            ├── Generator
+            ├── Amplifier
+            ├── Duplicator
+            └── TBD
 
 4. TBD

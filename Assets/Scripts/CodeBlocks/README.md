@@ -5,11 +5,20 @@ There are two kinds of interfaces which are ICodeBlock and IElementBlock.
 
 structure of spell design system
 
-    Spells
+    Spells : ClassBlock
     ├── Loop
     |   ├── For
     |   └── While
-    ├── Condition
-    |   ├── Numeric
-    |   └── Elemental
-    └── Action
+    └── ClassBlock
+        ├── Condition
+        |   ├── LogicalOpertation (Numeric)
+        |   |   ├── ManaInputBlock
+        |   |   ├── LogicalOperatorBlock
+        |   |   └── NumBlock
+        |   └── Attribution
+        |       └── TBD
+        └── Action
+            ├── Generator
+            ├── Amplifier
+            ├── Duplicator
+            └── TBD
