@@ -24,27 +24,14 @@ public class ClickableUI_Spell : MonoBehaviour, IPointerClickHandler
                 print("Null");
                 GameObject new_code = Instantiate(code);
                 PutOn(new_code);
-                return;
+                classBlock = GetComponentInChildren<ClassBlock>();
+                if(DroppableUI_Code.classBlock == null)
+                    DroppableUI_Code.SetClassBlock(classBlock);
             }
             DroppableUI_Code.BackupElement();
-            print("1");
             DroppableUI_Code.DeactivateElement();
-            print("2");
             DroppableUI_Code.SetClassBlock(classBlock);
-            
-            print("Set");
-            // DroppableUI_Code.classBlock = classBlock;
-            // print("3");
-            // DroppableUI_Code.manaInputBlock = classBlock.manaInputObject;
-            // print("4");
-            // DroppableUI_Code.logicalOperatorBlock = classBlock.logicalOperatorObject;
-            // print("5");
-            // DroppableUI_Code.referenceNumBlock = classBlock.referenceNumObject;
-            // print("6");
-            // DroppableUI_Code.actionBlock = classBlock.actionObject;
-            // print("7");
             DroppableUI_Code.ActivateElement();
-            print("Print");
         }else if(eventData.clickCount  == 2){
             print("Double Click");
         }

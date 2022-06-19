@@ -18,6 +18,12 @@ public class DroppableUI_Code : DroppableUI
     public static GameObject actionBlock;
     public static ClassBlock classBlock;
     private Transform droppedTransform;
+    public GameObject monitoring_manaInputBlock;
+    public GameObject monitoring_logicalOperatorBlock;
+    public GameObject monitoring_referenceNumBlock;
+    public GameObject monitoring_actionBlock;
+    public ClassBlock monitoring_classBlock;
+    public Transform monitoring_droppedTransform;
     public override void OnDrop(PointerEventData eventData){
         droppedTransform = eventData.pointerDrag.transform;
         if(eventData.pointerDrag == null)
@@ -80,6 +86,34 @@ public class DroppableUI_Code : DroppableUI
                 break;
         }
     }
+    public static void BackupElement(){
+        print("Backup");
+        
+        classBlock.Backup(manaInputBlock, logicalOperatorBlock, referenceNumBlock, actionBlock);
+        // classBlock.manaInputObject = manaInputBlock;
+        // classBlock.logicalOperatorObject = logicalOperatorBlock;
+        // classBlock.referenceNumObject = referenceNumBlock;
+        // classBlock.actionObject = actionBlock;
+        // classBlock.Init();
+    }
+    public static void DeactivateElement(){
+        // manaInput = null;
+        // logicalOperatorBlock = null;
+        // referenceNum = null;
+        // actionBlock = null;
+        // classBlock = null;
+        if(classBlock == null) return;
+        print("Deactive");
+        if( manaInputBlock != null)
+            manaInputBlock.SetActive(false);
+        if( logicalOperatorBlock != null)
+            logicalOperatorBlock.SetActive(false);
+        if( referenceNumBlock != null)
+            referenceNumBlock.SetActive(false);
+        if( actionBlock != null)
+            actionBlock.SetActive(false);
+        // classBlock = null;
+    }
     public static void SetClassBlock(ClassBlock _classBlock){
         if(classBlock == null){
             classBlock = _classBlock;
@@ -93,46 +127,33 @@ public class DroppableUI_Code : DroppableUI
         referenceNumBlock = classBlock.referenceNumObject;
         actionBlock = classBlock.actionObject;
     }
-    public static void DeactivateElement(){
-        // manaInput = null;
-        // logicalOperatorBlock = null;
-        // referenceNum = null;
-        // actionBlock = null;
-        // classBlock = null;
-        if(classBlock == null) return;
-        print("Deactive");
-        manaInputBlock?.SetActive(false);
-        logicalOperatorBlock?.SetActive(false);
-        referenceNumBlock?.SetActive(false);
-        actionBlock?.SetActive(false);
-        // classBlock = null;
-    }
-    public static void BackupElement(){
-        if(classBlock == null) return;
-        print("Backup");
-        classBlock.manaInputObject = manaInputBlock;
-        classBlock.logicalOperatorObject = logicalOperatorBlock;
-        classBlock.referenceNumObject = referenceNumBlock;
-        classBlock.actionObject = actionBlock;
-        classBlock.Init();
-    }
     public static void ActivateElement(){
         print("Active");
-        manaInputBlock?.SetActive(true);
-        logicalOperatorBlock?.SetActive(true);
-        referenceNumBlock?.SetActive(true);
-        actionBlock?.SetActive(true);
+        if( manaInputBlock != null)
+            manaInputBlock.SetActive(true);
+        if( logicalOperatorBlock != null)
+            logicalOperatorBlock.SetActive(true);
+        if( referenceNumBlock != null)
+            referenceNumBlock.SetActive(true);
+        if( actionBlock != null)
+            actionBlock.SetActive(true);
     }
     public override void OnPointerExit(PointerEventData eventData){
         SetTransparency(Color.white, 1.0f);
     }
     private void Update() {
+        monitoring_manaInputBlock = manaInputBlock;
+        monitoring_logicalOperatorBlock = logicalOperatorBlock;
+        monitoring_referenceNumBlock = referenceNumBlock;
+        monitoring_actionBlock = actionBlock;
+        monitoring_classBlock = classBlock;
+        monitoring_droppedTransform = droppedTransform;
         if(manaInputBlock == null || logicalOperatorBlock == null || referenceNumBlock == null || actionBlock == null)
             return;
-        if(classBlock == null){
-            classBlock = new ClassBlock(manaInputBlock, logicalOperatorBlock, referenceNumBlock, actionBlock);
+        if(classBlock != null){
+            classBlock.Backup(manaInputBlock, logicalOperatorBlock, referenceNumBlock, actionBlock);
+            classBlock.GoForward();
         }
-        classBlock.GoForward();
         //print("The condition (" + manaInput.number.ToString() + logicalOperatorBlock.logicalOperator.ToString() + referenceNum.number.ToString() + ") is " + classBlock.getCondition().ToString() + (classBlock.getCondition() ? ". Do Action" : "."));
     }
 }
