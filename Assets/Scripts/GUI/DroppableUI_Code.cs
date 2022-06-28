@@ -90,18 +90,8 @@ public class DroppableUI_Code : DroppableUI
         print("Backup");
         
         classBlock.Backup(manaInputBlock, logicalOperatorBlock, referenceNumBlock, actionBlock);
-        // classBlock.manaInputObject = manaInputBlock;
-        // classBlock.logicalOperatorObject = logicalOperatorBlock;
-        // classBlock.referenceNumObject = referenceNumBlock;
-        // classBlock.actionObject = actionBlock;
-        // classBlock.Init();
     }
     public static void DeactivateElement(){
-        // manaInput = null;
-        // logicalOperatorBlock = null;
-        // referenceNum = null;
-        // actionBlock = null;
-        // classBlock = null;
         if(classBlock == null) return;
         print("Deactive");
         if( manaInputBlock != null)
@@ -112,7 +102,6 @@ public class DroppableUI_Code : DroppableUI
             referenceNumBlock.SetActive(false);
         if( actionBlock != null)
             actionBlock.SetActive(false);
-        // classBlock = null;
     }
     public static void SetClassBlock(ClassBlock _classBlock){
         if(classBlock == null){
@@ -154,6 +143,5 @@ public class DroppableUI_Code : DroppableUI
             classBlock.Backup(manaInputBlock, logicalOperatorBlock, referenceNumBlock, actionBlock);
             classBlock.GoForward();
         }
-        //print("The condition (" + manaInput.number.ToString() + logicalOperatorBlock.logicalOperator.ToString() + referenceNum.number.ToString() + ") is " + classBlock.getCondition().ToString() + (classBlock.getCondition() ? ". Do Action" : "."));
     }
 }
